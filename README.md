@@ -1,23 +1,121 @@
 # GraphRAG-End-to-End-Implementation-AzureOpenAI
 Implementing GraphRAG (Graph-based Retrieval-Augmented Generation) using Azure OpenAI
 
-pre-requirements:
-Python latest version is giving some errors in installing Gensim and anothe library, so I recomend you to consider python 3.10 version
+## Pre-requirements:
+Python latest version might give some errors in installing Gensim and another library, so I recommend you to consider python 3.10 version.
 
-* Open VSCode > Terminal(command prompt) and continur the below commands:
-    
-    - < makedirs Graphrag >
-    # This above command used to creatre a new directory with name < Graphrag >
-    
-    - < conda create -p ./graphragvenv python=3.10 >
-    # This above command used to create a new conda environment with name < ./graphragvenv > and install python with version 3.10
+### Steps:
 
-    - < conda activate ./graphragvenv >
-    # This above command used to activate the created conda environment
+1. **Open VSCode > Terminal (command prompt) and continue the below commands:**
 
-    - < python -m pip install --upgrade pip >
-    # This above command install and update pip
+    ```sh
+    # Create a new directory
+    mkdir Graphrag
     
-    - < python -m pip install --upgrade setuptools >
-    # This above command used to install and upgrade the 
-    # "setutools" package used by many other packages to handle their installation from source code (and tasks related to it).
+    # Create a new conda environment with Python 3.10
+    conda create -p ./graphragvenv python=3.10
+    
+    # Activate the created conda environment
+    conda activate ./graphragvenv
+    
+    # Install and update pip
+    python -m pip install --upgrade pip
+    
+    # Install and upgrade the setuptools package
+    python -m pip install --upgrade setuptools
+    ```
+
+2. **Install GraphRAG:**
+
+    ```sh
+    # Install GraphRAG
+    pip install graphrag
+    
+    # If installing GraphRAG raises any error, run the below command
+    python -m pip install --no-cache-dir --force-reinstall gensim
+
+    # Then install GraphRAG again
+    pip install graphrag
+
+    #OR
+    
+    #If error still comes
+    #Ensure you have the correct version of the graphrag package installed.
+    #Sometimes, issues arise from using an outdated or incorrect version.
+    #You can specify the version during installation:
+    pip install graphrag==0.1.1
+    ```
+
+3. **Initialize GraphRAG:**
+
+    ```sh
+    python -m graphrag.index --init --root .
+    ```
+
+    Running the above command, GraphRAG is initiated and creates folders and files.
+
+4. **Creating the Deployments of LLM Model and Embedding Model in Azure OpenAI:**
+
+    - For embedding, the model is `text-embedding-small`
+    - For LLM model, recommended is `GPT-4o`.
+    After creating the deployments, you need to make some changes in the `settings.yaml` file.
+
+5. **Configure OPENAI_API_KEY:**
+
+    `.env` is also created when you initialize GraphRAG, you can configure your `OPENAI_API_KEY` there.
+
+6. **Make Changes in `settings.yaml` File:**
+
+    Go to the `llm` section:
+
+    - Configure your `api_key` in `.env` i.e, `${GRAPHRAG_API_KEY}`
+    - Change `type` from `openai_chat` to `azure_openai_chat`
+    - Change `model` to the model name that you deployed in Azure OpenAI.
+        - In my case, I have taken `GPT-4o`, you can try with other models as well.
+    - Uncomment the `api_base` and replace that URL with the endpoint of the Azure OpenAI
+        - In my case `<your_azure_openai_resource_group_name>` is used, you can give any name to the instance.
+    - Uncomment the `api_version`, no need to make changes in that, you can use the default `api_version`
+    - Uncomment the `deployement_name`, and replace that with the deployment you have given to the model while creating the deployment.
+        - In my case, I have taken `<deployment_name_of_model>`
+
+    In the same `settings.yaml` file, go to the `embeddings` section and make some changes:
+
+    - Configure your `api_key` in `.env` i.e, `${GRAPHRAG_API_KEY}`
+    - Change `type` from `openai_embeddings` to `azure_openai_embeddings`
+    - Change `model` to the model name that you deployed in Azure OpenAI.
+        - In my case, I have taken `text-embedding-3-small`, you can try with other models as well.
+    - Uncomment the `api_base` and replace that URL with the endpoint of the Azure OpenAI
+        - In my case `<your_azure_openai_resource_group_name>` is used, you can give any name to the instance.
+    - `api_version`, you can comment that or you can uncomment and use that. It won't raise an error
+    - Uncomment the `deployement_name`, and replace that with the deployment you have given to the model while creating the deployment.
+        - In my case, I have taken `<deployment_name_of_model>`
+
+    That's it. Now save the changes that you made in the `settings.yaml` file.
+
+7. **Add Input File:**
+
+    You need to add an input text file, to do that first create a folder by running the below command:
+
+    ```sh
+    mkdir input
+    ```
+
+    Now in this `input` folder, you need to add the `.txt` file (input text data file).
+
+8. **Run GraphRAG to Create Graphs on the Data:**
+
+    ```sh
+    python -m graphrag.index --root .
+    ```
+
+    This command will run the GraphRAG and create the parquet files. This will convert all your text data into entities and relationships graphs. You can check that in `output > last folder > artifacts folder` (you have parquet files, which are converted data into graphs).
+
+9. **Evaluate Our RAG Model:**
+
+    Now we need to test our RAG model, to do that we need to ask questions. We are doing things in the command prompt, we need to ask questions to our model along with a command. To ask a question, you need to write a command and then the question:
+
+    ```sh
+    python -m graphrag.query --root . --method local/global "Your_Question"
+    ```
+
+    When you run this command, the model uses either `local` (if written `local`) or `global` (if written `global`) to answer the question.
