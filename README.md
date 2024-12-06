@@ -56,7 +56,7 @@ Python latest version might give some errors in installing Gensim and another li
 
 4. **Creating the Deployments of LLM Model and Embedding Model in Azure OpenAI:**
 
-    - For embedding, the model is `text-embedding-small`
+    - For embedding, the model is `text-embedding-3-small`
     - For LLM model, recommended is `GPT-4o`.
     After creating the deployments, you need to make some changes in the `settings.yaml` file.
 
