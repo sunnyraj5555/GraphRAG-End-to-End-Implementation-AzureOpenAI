@@ -1,0 +1,470 @@
+14:26:12,994 graphrag.config.read_dotenv INFO Loading pipeline .env file
+14:26:13,10 graphrag.index.cli INFO using default configuration: {
+    "llm": {
+        "api_key": "REDACTED, length 32",
+        "type": "azure_openai_chat",
+        "model": "gpt-4o",
+        "max_tokens": 4000,
+        "request_timeout": 180.0,
+        "api_base": "https://cognisearch.openai.azure.com/",
+        "api_version": "2024-02-15-preview",
+        "proxy": null,
+        "cognitive_services_endpoint": null,
+        "deployment_name": "gpt-4o",
+        "model_supports_json": true,
+        "tokens_per_minute": 0,
+        "requests_per_minute": 0,
+        "max_retries": 10,
+        "max_retry_wait": 10.0,
+        "sleep_on_rate_limit_recommendation": true,
+        "concurrent_requests": 25
+    },
+    "parallelization": {
+        "stagger": 0.3,
+        "num_threads": 50
+    },
+    "async_mode": "threaded",
+    "root_dir": ".",
+    "reporting": {
+        "type": "file",
+        "base_dir": "output/${timestamp}/reports",
+        "storage_account_blob_url": null
+    },
+    "storage": {
+        "type": "file",
+        "base_dir": "output/${timestamp}/artifacts",
+        "storage_account_blob_url": null
+    },
+    "cache": {
+        "type": "file",
+        "base_dir": "cache",
+        "storage_account_blob_url": null
+    },
+    "input": {
+        "type": "file",
+        "file_type": "text",
+        "base_dir": "input",
+        "storage_account_blob_url": null,
+        "encoding": "utf-8",
+        "file_pattern": ".*\\.txt$",
+        "file_filter": null,
+        "source_column": null,
+        "timestamp_column": null,
+        "timestamp_format": null,
+        "text_column": "text",
+        "title_column": null,
+        "document_attribute_columns": []
+    },
+    "embed_graph": {
+        "enabled": false,
+        "num_walks": 10,
+        "walk_length": 40,
+        "window_size": 2,
+        "iterations": 3,
+        "random_seed": 597832,
+        "strategy": null
+    },
+    "embeddings": {
+        "llm": {
+            "api_key": "REDACTED, length 32",
+            "type": "azure_openai_embedding",
+            "model": "text-embedding-3-small",
+            "max_tokens": 4000,
+            "request_timeout": 180.0,
+            "api_base": "https://cognisearch.openai.azure.com/",
+            "api_version": "2024-02-15-preview",
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": "text-embedding-3-small",
+            "model_supports_json": null,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "batch_size": 16,
+        "batch_max_tokens": 8191,
+        "target": "required",
+        "skip": [],
+        "vector_store": null,
+        "strategy": null
+    },
+    "chunks": {
+        "size": 300,
+        "overlap": 100,
+        "group_by_columns": [
+            "id"
+        ],
+        "strategy": null
+    },
+    "snapshots": {
+        "graphml": false,
+        "raw_entities": false,
+        "top_level_nodes": false
+    },
+    "entity_extraction": {
+        "llm": {
+            "api_key": "REDACTED, length 32",
+            "type": "azure_openai_chat",
+            "model": "gpt-4o",
+            "max_tokens": 4000,
+            "request_timeout": 180.0,
+            "api_base": "https://cognisearch.openai.azure.com/",
+            "api_version": "2024-02-15-preview",
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": "gpt-4o",
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": "prompts/entity_extraction.txt",
+        "entity_types": [
+            "organization",
+            "person",
+            "geo",
+            "event"
+        ],
+        "max_gleanings": 0,
+        "strategy": null
+    },
+    "summarize_descriptions": {
+        "llm": {
+            "api_key": "REDACTED, length 32",
+            "type": "azure_openai_chat",
+            "model": "gpt-4o",
+            "max_tokens": 4000,
+            "request_timeout": 180.0,
+            "api_base": "https://cognisearch.openai.azure.com/",
+            "api_version": "2024-02-15-preview",
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": "gpt-4o",
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": "prompts/summarize_descriptions.txt",
+        "max_length": 500,
+        "strategy": null
+    },
+    "community_reports": {
+        "llm": {
+            "api_key": "REDACTED, length 32",
+            "type": "azure_openai_chat",
+            "model": "gpt-4o",
+            "max_tokens": 4000,
+            "request_timeout": 180.0,
+            "api_base": "https://cognisearch.openai.azure.com/",
+            "api_version": "2024-02-15-preview",
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": "gpt-4o",
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": null,
+        "max_length": 2000,
+        "max_input_length": 8000,
+        "strategy": null
+    },
+    "claim_extraction": {
+        "llm": {
+            "api_key": "REDACTED, length 32",
+            "type": "azure_openai_chat",
+            "model": "gpt-4o",
+            "max_tokens": 4000,
+            "request_timeout": 180.0,
+            "api_base": "https://cognisearch.openai.azure.com/",
+            "api_version": "2024-02-15-preview",
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": "gpt-4o",
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "enabled": false,
+        "prompt": "prompts/claim_extraction.txt",
+        "description": "Any claims or facts that could be relevant to information discovery.",
+        "max_gleanings": 0,
+        "strategy": null
+    },
+    "cluster_graph": {
+        "max_cluster_size": 10,
+        "strategy": null
+    },
+    "umap": {
+        "enabled": false
+    },
+    "local_search": {
+        "text_unit_prop": 0.5,
+        "community_prop": 0.1,
+        "conversation_history_max_turns": 5,
+        "top_k_entities": 10,
+        "top_k_relationships": 10,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "global_search": {
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "map_max_tokens": 1000,
+        "reduce_max_tokens": 2000,
+        "concurrency": 32
+    },
+    "encoding_model": "cl100k_base",
+    "skip_workflows": []
+}
+14:26:13,27 graphrag.index.create_pipeline_config INFO skipping workflows 
+14:26:13,27 graphrag.index.run INFO Running pipeline
+14:26:13,27 graphrag.index.storage.file_pipeline_storage INFO Creating file storage at output\20241204-142612\artifacts
+14:26:13,27 graphrag.index.input.load_input INFO loading input from root_dir=input
+14:26:13,27 graphrag.index.input.load_input INFO using file storage for input
+14:26:13,42 graphrag.index.storage.file_pipeline_storage INFO search input for files matching .*\.txt$
+14:26:13,42 graphrag.index.input.text INFO found text files from input, found [('horror_story.txt', {})]
+14:26:13,58 graphrag.index.workflows.load INFO Workflow Run Order: ['create_base_text_units', 'create_base_extracted_entities', 'create_summarized_entities', 'create_base_entity_graph', 'create_final_entities', 'create_final_nodes', 'create_final_communities', 'join_text_units_to_entity_ids', 'create_final_relationships', 'join_text_units_to_relationship_ids', 'create_final_community_reports', 'create_final_text_units', 'create_base_documents', 'create_final_documents']
+14:26:13,58 graphrag.index.run INFO Final # of rows loaded: 1
+14:26:13,279 graphrag.index.run INFO Running workflow: create_base_text_units...
+14:26:13,279 graphrag.index.run INFO dependencies for create_base_text_units: []
+14:26:13,294 datashaper.workflow.workflow INFO executing verb orderby
+14:26:13,311 datashaper.workflow.workflow INFO executing verb zip
+14:26:13,311 datashaper.workflow.workflow INFO executing verb aggregate_override
+14:26:13,341 datashaper.workflow.workflow INFO executing verb chunk
+14:26:14,3 datashaper.workflow.workflow INFO executing verb select
+14:26:14,19 datashaper.workflow.workflow INFO executing verb unroll
+14:26:14,48 datashaper.workflow.workflow INFO executing verb rename
+14:26:14,65 datashaper.workflow.workflow INFO executing verb genid
+14:26:14,81 datashaper.workflow.workflow INFO executing verb unzip
+14:26:14,98 datashaper.workflow.workflow INFO executing verb copy
+14:26:14,114 datashaper.workflow.workflow INFO executing verb filter
+14:26:14,160 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_text_units.parquet
+14:26:14,429 graphrag.index.run INFO Running workflow: create_base_extracted_entities...
+14:26:14,429 graphrag.index.run INFO dependencies for create_base_extracted_entities: ['create_base_text_units']
+14:26:14,429 graphrag.index.run INFO read table from storage: create_base_text_units.parquet
+14:26:14,492 datashaper.workflow.workflow INFO executing verb entity_extract
+14:26:14,495 graphrag.llm.openai.create_openai_client INFO Creating Azure OpenAI client api_base=https://cognisearch.openai.azure.com, deployment_name=gpt-4o
+14:26:15,390 graphrag.index.llm.load_llm INFO create TPM/RPM limiter for gpt-4o: TPM=0, RPM=0
+14:26:15,390 graphrag.index.llm.load_llm INFO create concurrency limiter for gpt-4o: 25
+14:26:23,320 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:23,336 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "Process" with 0 retries took 7.9060000000172295. input_tokens=2077, output_tokens=376
+14:26:23,336 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:23,336 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "Process" with 0 retries took 7.9060000000172295. input_tokens=2234, output_tokens=456
+14:26:24,652 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:24,652 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "Process" with 0 retries took 9.21899999998277. input_tokens=2233, output_tokens=526
+14:26:31,360 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:31,364 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "Process" with 0 retries took 15.952999999979511. input_tokens=2233, output_tokens=814
+14:26:31,391 datashaper.workflow.workflow INFO executing verb merge_graphs
+14:26:31,409 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_extracted_entities.parquet
+14:26:31,690 graphrag.index.run INFO Running workflow: create_summarized_entities...
+14:26:31,706 graphrag.index.run INFO dependencies for create_summarized_entities: ['create_base_extracted_entities']
+14:26:31,707 graphrag.index.run INFO read table from storage: create_base_extracted_entities.parquet
+14:26:31,753 datashaper.workflow.workflow INFO executing verb summarize_descriptions
+14:26:34,140 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:34,140 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 2.3119999999762513. input_tokens=217, output_tokens=60
+14:26:34,283 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:34,283 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 2.3589999999967404. input_tokens=163, output_tokens=31
+14:26:34,648 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:34,664 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 2.75. input_tokens=166, output_tokens=42
+14:26:34,838 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:34,838 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 2.922000000020489. input_tokens=190, output_tokens=57
+14:26:34,838 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:34,853 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 3.0160000000032596. input_tokens=171, output_tokens=44
+14:26:34,853 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:34,853 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 2.9060000000172295. input_tokens=163, output_tokens=40
+14:26:34,943 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:34,948 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 3.0790000000270084. input_tokens=206, output_tokens=51
+14:26:34,948 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:34,964 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 3.062000000034459. input_tokens=191, output_tokens=44
+14:26:35,350 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:35,353 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 3.485000000044238. input_tokens=188, output_tokens=38
+14:26:35,594 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:35,594 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 3.7030000000377186. input_tokens=177, output_tokens=29
+14:26:35,772 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:35,772 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 3.9219999999622814. input_tokens=175, output_tokens=36
+14:26:35,832 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:35,833 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 4.0. input_tokens=192, output_tokens=43
+14:26:35,895 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:35,895 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 0 retries took 4.0. input_tokens=182, output_tokens=49
+14:26:35,944 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_summarized_entities.parquet
+14:26:36,197 graphrag.index.run INFO Running workflow: create_base_entity_graph...
+14:26:36,197 graphrag.index.run INFO dependencies for create_base_entity_graph: ['create_summarized_entities']
+14:26:36,200 graphrag.index.run INFO read table from storage: create_summarized_entities.parquet
+14:26:36,242 datashaper.workflow.workflow INFO executing verb cluster_graph
+14:26:36,312 datashaper.workflow.workflow INFO executing verb select
+14:26:36,319 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_entity_graph.parquet
+14:26:36,574 graphrag.index.run INFO Running workflow: create_final_entities...
+14:26:36,574 graphrag.index.run INFO dependencies for create_final_entities: ['create_base_entity_graph']
+14:26:36,574 graphrag.index.run INFO read table from storage: create_base_entity_graph.parquet
+14:26:36,636 datashaper.workflow.workflow INFO executing verb unpack_graph
+14:26:36,668 datashaper.workflow.workflow INFO executing verb rename
+14:26:36,699 datashaper.workflow.workflow INFO executing verb select
+14:26:36,731 datashaper.workflow.workflow INFO executing verb dedupe
+14:26:36,758 datashaper.workflow.workflow INFO executing verb rename
+14:26:36,780 datashaper.workflow.workflow INFO executing verb filter
+14:26:36,841 datashaper.workflow.workflow INFO executing verb text_split
+14:26:36,873 datashaper.workflow.workflow INFO executing verb drop
+14:26:36,952 datashaper.workflow.workflow INFO executing verb merge
+14:26:36,983 datashaper.workflow.workflow INFO executing verb text_embed
+14:26:36,999 graphrag.llm.openai.create_openai_client INFO Creating Azure OpenAI client api_base=https://cognisearch.openai.azure.com, deployment_name=text-embedding-3-small
+14:26:37,850 graphrag.index.llm.load_llm INFO create TPM/RPM limiter for text-embedding-3-small: TPM=0, RPM=0
+14:26:37,850 graphrag.index.llm.load_llm INFO create concurrency limiter for text-embedding-3-small: 25
+14:26:37,850 graphrag.index.verbs.text.embed.strategies.openai INFO embedding 12 inputs via 12 snippets using 1 batches. max_batch_size=16, max_tokens=8191
+14:26:39,52 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:39,428 graphrag.llm.base.rate_limiting_llm INFO perf - llm.embedding "Process" with 0 retries took 1.577999999979511. input_tokens=506, output_tokens=0
+14:26:39,538 datashaper.workflow.workflow INFO executing verb drop
+14:26:39,584 datashaper.workflow.workflow INFO executing verb filter
+14:26:39,649 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_entities.parquet
+14:26:39,979 graphrag.index.run INFO Running workflow: create_final_nodes...
+14:26:39,979 graphrag.index.run INFO dependencies for create_final_nodes: ['create_base_entity_graph']
+14:26:39,979 graphrag.index.run INFO read table from storage: create_base_entity_graph.parquet
+14:26:40,104 datashaper.workflow.workflow INFO executing verb layout_graph
+14:26:40,167 datashaper.workflow.workflow INFO executing verb unpack_graph
+14:26:40,199 datashaper.workflow.workflow INFO executing verb unpack_graph
+14:26:40,261 datashaper.workflow.workflow INFO executing verb drop
+14:26:40,308 datashaper.workflow.workflow INFO executing verb filter
+14:26:40,403 datashaper.workflow.workflow INFO executing verb select
+14:26:40,450 datashaper.workflow.workflow INFO executing verb rename
+14:26:40,497 datashaper.workflow.workflow INFO executing verb join
+14:26:40,561 datashaper.workflow.workflow INFO executing verb convert
+14:26:40,749 datashaper.workflow.workflow INFO executing verb rename
+14:26:40,765 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_nodes.parquet
+14:26:41,111 graphrag.index.run INFO Running workflow: create_final_communities...
+14:26:41,126 graphrag.index.run INFO dependencies for create_final_communities: ['create_base_entity_graph']
+14:26:41,158 graphrag.index.run INFO read table from storage: create_base_entity_graph.parquet
+14:26:41,284 datashaper.workflow.workflow INFO executing verb unpack_graph
+14:26:41,364 datashaper.workflow.workflow INFO executing verb unpack_graph
+14:26:41,442 datashaper.workflow.workflow INFO executing verb aggregate_override
+14:26:41,505 datashaper.workflow.workflow INFO executing verb join
+14:26:41,599 datashaper.workflow.workflow INFO executing verb join
+14:26:41,662 datashaper.workflow.workflow INFO executing verb concat
+14:26:41,709 datashaper.workflow.workflow INFO executing verb filter
+14:26:41,883 datashaper.workflow.workflow INFO executing verb aggregate_override
+14:26:41,946 datashaper.workflow.workflow INFO executing verb join
+14:26:42,25 datashaper.workflow.workflow INFO executing verb filter
+14:26:42,182 datashaper.workflow.workflow INFO executing verb fill
+14:26:42,294 datashaper.workflow.workflow INFO executing verb merge
+14:26:42,419 datashaper.workflow.workflow INFO executing verb copy
+14:26:42,482 datashaper.workflow.workflow INFO executing verb select
+14:26:42,482 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_communities.parquet
+14:26:42,875 graphrag.index.run INFO Running workflow: join_text_units_to_entity_ids...
+14:26:42,875 graphrag.index.run INFO dependencies for join_text_units_to_entity_ids: ['create_final_entities']
+14:26:42,891 graphrag.index.run INFO read table from storage: create_final_entities.parquet
+14:26:43,30 datashaper.workflow.workflow INFO executing verb select
+14:26:43,95 datashaper.workflow.workflow INFO executing verb unroll
+14:26:43,174 datashaper.workflow.workflow INFO executing verb aggregate_override
+14:26:43,176 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table join_text_units_to_entity_ids.parquet
+14:26:43,614 graphrag.index.run INFO Running workflow: create_final_relationships...
+14:26:43,614 graphrag.index.run INFO dependencies for create_final_relationships: ['create_final_nodes', 'create_base_entity_graph']
+14:26:43,614 graphrag.index.run INFO read table from storage: create_final_nodes.parquet
+14:26:43,631 graphrag.index.run INFO read table from storage: create_base_entity_graph.parquet
+14:26:43,771 datashaper.workflow.workflow INFO executing verb unpack_graph
+14:26:43,835 datashaper.workflow.workflow INFO executing verb filter
+14:26:44,39 datashaper.workflow.workflow INFO executing verb rename
+14:26:44,117 datashaper.workflow.workflow INFO executing verb filter
+14:26:44,333 datashaper.workflow.workflow INFO executing verb drop
+14:26:44,401 datashaper.workflow.workflow INFO executing verb compute_edge_combined_degree
+14:26:44,633 datashaper.workflow.workflow INFO executing verb convert
+14:26:44,841 datashaper.workflow.workflow INFO executing verb convert
+14:26:44,856 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_relationships.parquet
+14:26:45,250 graphrag.index.run INFO Running workflow: join_text_units_to_relationship_ids...
+14:26:45,250 graphrag.index.run INFO dependencies for join_text_units_to_relationship_ids: ['create_final_relationships']
+14:26:45,250 graphrag.index.run INFO read table from storage: create_final_relationships.parquet
+14:26:45,407 datashaper.workflow.workflow INFO executing verb select
+14:26:45,485 datashaper.workflow.workflow INFO executing verb unroll
+14:26:45,566 datashaper.workflow.workflow INFO executing verb aggregate_override
+14:26:45,882 datashaper.workflow.workflow INFO executing verb select
+14:26:45,896 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table join_text_units_to_relationship_ids.parquet
+14:26:46,257 graphrag.index.run INFO Running workflow: create_final_community_reports...
+14:26:46,257 graphrag.index.run INFO dependencies for create_final_community_reports: ['create_final_nodes', 'create_final_relationships']
+14:26:46,257 graphrag.index.run INFO read table from storage: create_final_nodes.parquet
+14:26:46,280 graphrag.index.run INFO read table from storage: create_final_relationships.parquet
+14:26:46,445 datashaper.workflow.workflow INFO executing verb prepare_community_reports_nodes
+14:26:46,534 datashaper.workflow.workflow INFO executing verb prepare_community_reports_edges
+14:26:46,618 datashaper.workflow.workflow INFO executing verb restore_community_hierarchy
+14:26:46,712 datashaper.workflow.workflow INFO executing verb prepare_community_reports
+14:26:46,887 graphrag.index.verbs.graph.report.prepare_community_reports INFO Number of nodes at level=0 => 12
+14:26:47,121 datashaper.workflow.workflow INFO executing verb create_community_reports
+14:26:54,194 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:54,194 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 7.063000000023749. input_tokens=2423, output_tokens=552
+14:26:56,174 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:26:56,190 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 9.03200000000652. input_tokens=2579, output_tokens=632
+14:27:00,244 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:27:00,260 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 13.061999999976251. input_tokens=2206, output_tokens=776
+14:27:01,637 httpx INFO HTTP Request: POST https://cognisearch.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+14:27:01,637 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 14.436999999976251. input_tokens=2618, output_tokens=690
+14:27:01,843 datashaper.workflow.workflow INFO executing verb window
+14:27:01,931 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_community_reports.parquet
+14:27:02,393 graphrag.index.run INFO Running workflow: create_final_text_units...
+14:27:02,409 graphrag.index.run INFO dependencies for create_final_text_units: ['join_text_units_to_entity_ids', 'create_base_text_units', 'join_text_units_to_relationship_ids']
+14:27:02,483 graphrag.index.run INFO read table from storage: join_text_units_to_entity_ids.parquet
+14:27:02,488 graphrag.index.run INFO read table from storage: create_base_text_units.parquet
+14:27:02,504 graphrag.index.run INFO read table from storage: join_text_units_to_relationship_ids.parquet
+14:27:02,710 datashaper.workflow.workflow INFO executing verb select
+14:27:02,789 datashaper.workflow.workflow INFO executing verb rename
+14:27:02,885 datashaper.workflow.workflow INFO executing verb join
+14:27:03,72 datashaper.workflow.workflow INFO executing verb join
+14:27:03,386 datashaper.workflow.workflow INFO executing verb aggregate_override
+14:27:03,496 datashaper.workflow.workflow INFO executing verb select
+14:27:03,687 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_text_units.parquet
+14:27:04,88 graphrag.index.run INFO Running workflow: create_base_documents...
+14:27:04,88 graphrag.index.run INFO dependencies for create_base_documents: ['create_final_text_units']
+14:27:04,88 graphrag.index.run INFO read table from storage: create_final_text_units.parquet
+14:27:04,268 datashaper.workflow.workflow INFO executing verb unroll
+14:27:04,366 datashaper.workflow.workflow INFO executing verb select
+14:27:04,457 datashaper.workflow.workflow INFO executing verb rename
+14:27:04,568 datashaper.workflow.workflow INFO executing verb join
+14:27:04,914 datashaper.workflow.workflow INFO executing verb aggregate_override
+14:27:05,118 datashaper.workflow.workflow INFO executing verb join
+14:27:05,433 datashaper.workflow.workflow INFO executing verb rename
+14:27:05,637 datashaper.workflow.workflow INFO executing verb convert
+14:27:05,956 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_documents.parquet
+14:27:06,363 graphrag.index.run INFO Running workflow: create_final_documents...
+14:27:06,363 graphrag.index.run INFO dependencies for create_final_documents: ['create_base_documents']
+14:27:06,363 graphrag.index.run INFO read table from storage: create_base_documents.parquet
+14:27:06,568 datashaper.workflow.workflow INFO executing verb rename
+14:27:06,583 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_documents.parquet
